@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curriculum Vitae | Shakhrizoda Rakhmonalieva</title>
+    <meta name="description"
+        content="CV of Shakhrizoda Rakhmonalieva — EFL Educator, IELTS Instructor, and Researcher." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        /* ===== CV PAGE SPECIFIC STYLES ===== */
+        .cv-hero {
+            position: relative;
+            min-height: 55vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+            text-align: center;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .cv-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 50% 60%, rgba(124, 58, 237, 0.18) 0%, transparent 70%);
+            animation: heroBgShift 8s ease-in-out infinite alternate;
+        }
+
+        .cv-hero-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cv-hero-name {
+            font-family: var(--font-display);
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            font-weight: 900;
+            color: var(--text-primary);
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        .cv-hero-name em {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cv-hero-title {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.08em;
+            margin-bottom: 2rem;
+        }
+
+        .cv-contact-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 0;
+        }
+
+        .cv-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
+            padding: 0.4rem 1rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: border-color var(--transition-fast), color var(--transition-fast);
+        }
+
+        .cv-contact-item:hover {
+            border-color: var(--border-glow);
+            color: var(--text-primary);
+        }
+
+        .cv-contact-item span.icon {
+            font-size: 1rem;
+        }
+
+        /* CV BODY LAYOUT */
+        .cv-body {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 5% 6rem;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+
+
+        .cv-section {
+            margin-bottom: 3rem;
+        }
+
+        .cv-section-title {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent-purple);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .cv-section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 40px;
+            height: 2px;
+            background: var(--gradient-accent);
+            border-radius: 2px;
+        }
+
+        /* Profile summary */
+        .cv-profile-text {
+            font-size: 0.93rem;
+            line-height: 1.75;
+            color: var(--text-secondary);
+        }
+
+        /* Education */
+        .cv-edu-item {
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 2px solid var(--border-subtle);
+            transition: border-color var(--transition-mid);
+        }
+
+        .cv-edu-item:hover {
+            border-color: var(--accent-purple);
+        }
+
+        .cv-edu-year {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-purple);
+            margin-bottom: 0.2rem;
+        }
+
+        .cv-edu-degree {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .cv-edu-institution {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+
+        /* Certificates */
+        .cv-cert-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .cv-cert-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.6rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid transparent;
+            transition: border-color var(--transition-fast), background var(--transition-fast);
+        }
+
+        .cv-cert-list li:hover {
+            border-color: var(--border-subtle);
+            background: rgba(139, 92, 246, 0.05);
+        }
+
+        .cv-cert-list li::before {
+            content: '🏅';
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        /* Languages */
+        .cv-lang-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .cv-lang-item {
+            background: var(--gradient-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            padding: 0.6rem 0.8rem;
+            text-align: center;
+            transition: border-color var(--transition-fast), transform var(--transition-fast);
+        }
+
+        .cv-lang-item:hover {
+            border-color: var(--border-glow);
+            transform: translateY(-2px);
+        }
+
+        .cv-lang-name {
+            font-weight: 600;
+            font-size: 0.88rem;
+            color: var(--text-primary);
+        }
+
+        .cv-lang-level {
+            font-size: 0.75rem;
+            color: var(--accent-purple);
+            font-weight: 500;
+        }
+
+
+
+        /* Work Experience */
+        .cv-job {
+            position: relative;
+            padding: 1.8rem 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: var(--radius-md);
+            background: var(--gradient-card);
+            border: 1px solid var(--border-subtle);
+            transition: transform var(--transition-mid), box-shadow var(--transition-mid), border-color var(--transition-mid);
+            overflow: hidden;
+            opacity: 0;
+            transform: translateX(30px);
+        }
+
+        .cv-job.visible {
+            opacity: 1;
+            transform: translateX(0);
+            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow var(--transition-mid), border-color var(--transition-mid);
+        }
+
+        .cv-job:hover {
+            transform: translateX(6px);
+            box-shadow: var(--shadow-glow);
+            border-color: var(--border-glow);
+        }
+
+        .cv-job::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--gradient-accent);
+            opacity: 0;
+            transition: opacity var(--transition-mid);
+        }
+
+        .cv-job:hover::before {
+            opacity: 1;
+        }
+
+        .cv-job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .cv-job-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .cv-job-company {
+            font-size: 0.9rem;
+            color: var(--accent-purple);
+            font-weight: 500;
+        }
+
+        .cv-job-period {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: var(--radius-xl);
+            padding: 0.25rem 0.75rem;
+            white-space: nowrap;
+        }
+
+        .cv-job-period.current {
+            color: var(--accent-purple);
+            background: rgba(139, 92, 246, 0.18);
+            animation: pulsePeriod 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulsePeriod {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+            }
+
+            50% {
+                box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+            }
+        }
+
+        .cv-job-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .cv-job-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.75rem;
+        }
+
+        .cv-tag {
+            font-size: 0.72rem;
+            font-weight: 500;
+            padding: 0.2rem 0.65rem;
+            border-radius: var(--radius-xl);
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--accent-purple);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        /* Skills */
+        .cv-skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .cv-skill-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            padding: 0.6rem 1rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-subtle);
+            background: var(--gradient-card);
+            transition: border-color var(--transition-fast), transform var(--transition-fast);
+        }
+
+        .cv-skill-item:hover {
+            border-color: var(--border-glow);
+            transform: translateX(4px);
+            color: var(--text-primary);
+        }
+
+        .cv-skill-item::before {
+            content: '→';
+            color: var(--accent-purple);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* Download button */
+        .cv-download-wrap {
+            text-align: center;
+            padding: 2rem 0 0;
+        }
+
+        /* Animated timeline connector */
+        .cv-timeline-line {
+            position: absolute;
+            left: -16px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-purple), transparent);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .cv-body {
+                grid-template-columns: 1fr;
+            }
+
+            .cv-skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .cv-lang-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .cv-hero-name {
+                font-size: clamp(2.2rem, 9vw, 3.5rem);
+            }
+        }
+    </style>
+</head>
+
+<body class="cv-page">
+
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-logo">
+            <span class="logo-initials">SR</span>
+            <span class="logo-name">Shakhrizoda</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link" id="nav-bio">Bio</a>
+            <a href="philosophy.html" class="nav-link" id="nav-phil">Teaching Philosophy</a>
+            <a href="cv.html" class="nav-link active" id="nav-cv">CV</a>
+        </div>
+    </nav>
+
+    <!-- CV Hero -->
+    <section class="cv-hero">
+        <div class="cv-hero-inner">
+            <div class="hero-subtitle">Curriculum Vitae</div>
+            <h1 class="cv-hero-name">
+                <em>Rakhmonalieva</em><br />Shakhrizoda
+            </h1>
+            <p class="cv-hero-title">English Language Teacher &amp; IELTS Instructor</p>
+
+            <div class="cv-contact-bar">
+                <div class="cv-contact-item">
+                    <span class="icon">📞</span>
+                    <span>+99890-752-17-03</span>
+                </div>
+                <div class="cv-contact-item">
+                    <span class="icon">✉️</span>
+                    <span>shakhrizodarakhmonalieva7l@gmail.com</span>
+                </div>
+                <div class="cv-contact-item">
+                    <span class="icon">📍</span>
+                    <span>28 Qizil Tokzor Str, Uchtepa district</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CV Body -->
+    <div class="cv-body">
+
+        <!-- SIDEBAR -->
+        <aside class="cv-sidebar">
+
+            <!-- Profile -->
+            <div class="cv-section card-reveal">
+                <h3 class="cv-section-title">Profile</h3>
+                <p class="cv-profile-text">
+                    Motivated and adaptable English Language Teacher with solid experience in online and classroom-based
+                    teaching. I specialize in helping learners improve their general English language skills and
+                    overall communication in both general English and International English Language Testing System
+                    (IELTS) preparation. My approach is student-centered, using engaging materials and interactive
+                    methods.
+                </p>
+            </div>
+
+            <!-- Education -->
+            <div class="cv-section card-reveal">
+                <h3 class="cv-section-title">Education</h3>
+
+                <div class="cv-edu-item">
+                    <div class="cv-edu-year">2021 – Present</div>
+                    <div class="cv-edu-degree">Bachelor of Arts — English Language &amp; Literature</div>
+                    <div class="cv-edu-institution">UzSWLU (Senior Student)</div>
+                </div>
+
+                <div class="cv-edu-item">
+                    <div class="cv-edu-year">2019 – 2021</div>
+                    <div class="cv-edu-degree">Foreign Language (English)</div>
+                    <div class="cv-edu-institution">NamSU Academic Lyceum</div>
+                </div>
+            </div>
+
+            <!-- Certificates -->
+            <div class="cv-section card-reveal">
+                <h3 class="cv-section-title">Certificates</h3>
+                <ul class="cv-cert-list">
+                    <li>TEFL Certification</li>
+                    <li>IELTS 8.0 (2024) — Reading: 8.5 · Listening: 7.5 · Writing: 7.0 · Speaking: 8.0</li>
+                    <li>CEFR B2 (2021)</li>
+                    <li>IELTS 6.5 (2020)</li>
+                </ul>
+            </div>
+
+            <!-- Languages -->
+            <div class="cv-section card-reveal">
+                <h3 class="cv-section-title">Languages</h3>
+                <div class="cv-lang-grid">
+                    <div class="cv-lang-item">
+                        <div class="cv-lang-name">English</div>
+                        <div class="cv-lang-level">C1</div>
+                    </div>
+                    <div class="cv-lang-item">
+                        <div class="cv-lang-name">Russian</div>
+                        <div class="cv-lang-level">B1</div>
+                    </div>
+                    <div class="cv-lang-item">
+                        <div class="cv-lang-name">German</div>
+                        <div class="cv-lang-level">A1</div>
+                    </div>
+                    <div class="cv-lang-item">
+                        <div class="cv-lang-name">Arabic</div>
+                        <div class="cv-lang-level">A1</div>
+                    </div>
+                </div>
+            </div>
+
+        </aside>
+
+        <!-- MAIN COLUMN -->
+        <main class="cv-main">
+
+            <!-- Work Experience -->
+            <div class="cv-section">
+                <h3 class="cv-section-title">Work Experience</h3>
+
+                <!-- Job 1 — Current -->
+                <div class="cv-job">
+                    <div class="cv-job-header">
+                        <div>
+                            <div class="cv-job-title">Online General English Teacher</div>
+                            <div class="cv-job-company">Freelance / Independent</div>
+                        </div>
+                        <div class="cv-job-period current">2024 – Present</div>
+                    </div>
+                    <p class="cv-job-desc">
+                        For six months I have been teaching adults to learn English and improve their speaking skills.
+                        I help a number of students prepare for the International English Language Testing System
+                        (IELTS) and achieve their target scores. I design personalized lesson plans, provide structured
+                        feedback on speaking and writing, and conduct mock exams to build exam confidence.
+                    </p>
+                    <div class="cv-job-tags">
+                        <span class="cv-tag">IELTS Preparation</span>
+                        <span class="cv-tag">Speaking Coaching</span>
+                        <span class="cv-tag">Online Teaching</span>
+                        <span class="cv-tag">Lesson Design</span>
+                    </div>
+                </div>
+
+                <!-- Job 2 — Firmit -->
+                <div class="cv-job">
+                    <div class="cv-job-header">
+                        <div>
+                            <div class="cv-job-title">Office Manager</div>
+                            <div class="cv-job-company">Firmit Company</div>
+                        </div>
+                        <div class="cv-job-period">2023 – 2024</div>
+                    </div>
+                    <p class="cv-job-desc">
+                        Managed day-to-day office operations, coordinated communication between departments, and
+                        maintained organizational systems to ensure smooth workflow. Responsibilities included
+                        scheduling, correspondence management, document preparation, and supporting the leadership
+                        team with administrative needs. Developed strong organizational, communication, and
+                        problem-solving skills in a professional business environment.
+                    </p>
+                    <div class="cv-job-tags">
+                        <span class="cv-tag">Office Administration</span>
+                        <span class="cv-tag">Team Coordination</span>
+                        <span class="cv-tag">Document Management</span>
+                        <span class="cv-tag">Communication</span>
+                    </div>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="cv-job">
+                    <div class="cv-job-header">
+                        <div>
+                            <div class="cv-job-title">Language Lab Assistant</div>
+                            <div class="cv-job-company">English Language Faculty</div>
+                        </div>
+                        <div class="cv-job-period">2022 – 2023</div>
+                    </div>
+                    <p class="cv-job-desc">
+                        Worked at the English Language faculty, assisting teachers in preparing learning materials
+                        and documentation. Supported instructors in maintaining language lab resources and helped
+                        students access supplementary materials for independent study.
+                    </p>
+                    <div class="cv-job-tags">
+                        <span class="cv-tag">Materials Development</span>
+                        <span class="cv-tag">Lab Management</span>
+                        <span class="cv-tag">Student Support</span>
+                    </div>
+                </div>
+
+                <!-- Job 4 -->
+                <div class="cv-job">
+                    <div class="cv-job-header">
+                        <div>
+                            <div class="cv-job-title">Teacher Assistant</div>
+                            <div class="cv-job-company">English Language Lead Teacher</div>
+                        </div>
+                        <div class="cv-job-period">2020 – 2021</div>
+                    </div>
+                    <p class="cv-job-desc">
+                        Worked as a Teaching Assistant (TA) under my English language lead teacher. Supported lesson
+                        delivery, assisted students with in-class activities, and gained foundational experience in
+                        classroom management, language instruction techniques, and learner support strategies.
+                    </p>
+                    <div class="cv-job-tags">
+                        <span class="cv-tag">Classroom Support</span>
+                        <span class="cv-tag">Teaching Practice</span>
+                        <span class="cv-tag">Learner Engagement</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Skills -->
+            <div class="cv-section card-reveal">
+                <h3 class="cv-section-title">Skills</h3>
+                <div class="cv-skills-grid">
+                    <div class="cv-skill-item">General English instruction (A1–C1)</div>
+                    <div class="cv-skill-item">Familiarity with IELTS &amp; exam rubrics</div>
+                    <div class="cv-skill-item">Test-taking techniques &amp; mock facilitation</div>
+                    <div class="cv-skill-item">Student-centered lesson planning</div>
+                    <div class="cv-skill-item">Interactive speaking activities &amp; role-plays</div>
+                    <div class="cv-skill-item">Building learner confidence &amp; motivation</div>
+                    <div class="cv-skill-item">Multimodal materials design</div>
+                    <div class="cv-skill-item">Office administration &amp; coordination</div>
+                </div>
+            </div>
+
+            <!-- Download / Contact CTA -->
+            <div class="cv-download-wrap card-reveal">
+                <div class="cta-banner"
+                    style="grid-template-columns:1fr; text-align:center; padding:3rem 2rem; margin:0;">
+                    <div>
+                        <h2 style="font-size:1.6rem; margin-bottom:0.5rem;">Ready to connect?</h2>
+                        <p style="margin-bottom:1.5rem;">Explore my teaching philosophy or go back to my bio page.</p>
+                        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+                            <a href="philosophy.html" class="btn-primary">
+                                <span>Teaching Philosophy</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                            <a href="index.html" class="btn-ghost">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                                </svg>
+                                <span>Bio Page</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="logo-initials small">SR</span>
+                <span>Shakhrizoda Rakhmonalieva</span>
+            </div>
+            <nav class="footer-nav">
+                <a href="index.html">Bio</a>
+                <a href="philosophy.html">Teaching Philosophy</a>
+                <a href="cv.html">CV</a>
+            </nav>
+            <p class="footer-copy">© 2026 · Educator &amp; Researcher</p>
+        </div>
+    </footer>
+
+    <script src="animations.js"></script>
+    <script>
+        // Animate CV job cards sliding in from the right
+        (function () {
+            const jobs = document.querySelectorAll('.cv-job');
+            if (!jobs.length) return;
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach((entry, i) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, 100);
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            jobs.forEach((j, i) => {
+                j.style.transitionDelay = `${i * 0.08}s`;
+                io.observe(j);
+            });
+        })();
+    </script>
+</body>
+
+</html>
